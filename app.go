@@ -39,11 +39,19 @@ func main() {
 	router.LoadHTMLGlob("views/*")
 	router.GET("/", HomepageHandler)
 
+	// user login manager
 	user := router.Group("/user")
 	{
 		user.GET("/login", LoginPageHandler)
 		user.GET("/login/do", LoginActionHandler)
-		user.Any("/verify", LoginVerificationHandler)
+		user.Any("/verify", LoginVerificationHandler) // Callback endpoint
+	}
+
+	// agora : list of issues to solve
+	agora := router.Group("/agora")
+	{
+		agora.GET("/")
+		agora.GET("/language/:lang/")
 	}
 
 	router.Run()
