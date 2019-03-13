@@ -1,14 +1,44 @@
-package main
+package handler
 
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 
+	"github.com/BurntSushi/toml"
+	"github.com/dariubs/commit/config"
 	"github.com/gin-gonic/gin"
 	"github.com/google/go-github/github"
 	"golang.org/x/oauth2"
+	githuboauth "golang.org/x/oauth2/github"
 )
+
+var (
+	// Config : general config
+	Config config.CONFIG
+
+	// OauthStateString -
+	OauthStateString string
+
+	oauthConf = &oauth2.Config{}
+)
+
+func init() {
+	// load config
+	if _, err := toml.DecodeFile("config.toml", &Config); err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	oauthConf = &oauth2.Config{
+		ClientID:     Config.ClientID,
+		ClientSecret: Config.ClientSecret,
+		Scopes:       []string{"read:user", "public_repo"},
+		Endpoint:     githuboauth.Endpoint,
+	}
+	OauthStateString = Config.OauthState
+}
 
 // HomepageHandler : '/'
 func HomepageHandler(c *gin.Context) {

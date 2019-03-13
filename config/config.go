@@ -1,4 +1,4 @@
-package main
+package config
 
 // CONFIG type for app
 type CONFIG struct {
