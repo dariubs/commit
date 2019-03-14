@@ -1,0 +1,13 @@
+[github]
+ClientID = ""
+ClientSecret = ""
+Scopes = ["",""]
+OauthState = ""
+
+[database]
+engine = "postgres"
+host = "-"
+username = "-"
+password = "-"
+dbname = "-"
+port = "-"
