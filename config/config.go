@@ -2,7 +2,8 @@ package config
 
 // Config type for app
 type Config struct {
-	GitHub GitHub `toml:"github"`
+	GitHub   GitHub `toml:"github"`
+	Database Database
 }
 
 // Github type
