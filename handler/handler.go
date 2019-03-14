@@ -16,7 +16,7 @@ import (
 
 var (
 	// Config : general config
-	Config config.CONFIG
+	Config config.Config
 
 	// OauthStateString -
 	OauthStateString string
@@ -32,12 +32,12 @@ func init() {
 	}
 
 	oauthConf = &oauth2.Config{
-		ClientID:     Config.ClientID,
-		ClientSecret: Config.ClientSecret,
+		ClientID:     Config.GitHub.ClientID,
+		ClientSecret: Config.GitHub.ClientSecret,
 		Scopes:       []string{"read:user", "public_repo"},
 		Endpoint:     githuboauth.Endpoint,
 	}
-	OauthStateString = Config.OauthState
+	OauthStateString = Config.GitHub.OauthState
 }
 
 // HomepageHandler : '/'

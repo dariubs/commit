@@ -1,7 +1,12 @@
 package config
 
-// CONFIG type for app
-type CONFIG struct {
+// Config type for app
+type Config struct {
+	GitHub GitHub `toml:"github"`
+}
+
+// Github type
+type GitHub struct {
 	ClientID     string
 	ClientSecret string
 	Scopes       []string
