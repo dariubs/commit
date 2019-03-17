@@ -12,7 +12,7 @@ RUN PATH="/go/bin:$PATH"
 COPY . /go/src/github.com/dariubs/commit
 WORKDIR /go/src/github.com/dariubs/commit
 RUN dep ensure
-RUN go install github.com/dariubs/commit
+RUN go install github.com/dariubs/commit/cmd/web
 
 WORKDIR /go/src/github.com/dariubs/commit
-CMD /go/bin/commit
+CMD /go/bin/web
