@@ -14,6 +14,7 @@ var cfgfile string
 
 // Config type for app
 type Config struct {
+	Web      Web    `toml:"web"`
 	GitHub   GitHub `toml:"github"`
 	Database Database
 }
