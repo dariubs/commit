@@ -20,24 +20,28 @@ type Config struct {
 }
 
 func init() {
-	env := ConfigFile()
+	env := configFile()
 
 	// set cfgfile name
 	cfgfile = fmt.Sprintf("config.%s.toml", env)
 }
 
+// NewConfig create an instance of app config.
+// It returns a Config and an error
 func NewConfig() (Config, error) {
 	var cfg Config
 
 	if _, err := toml.DecodeFile(cfgfile, &cfg); err != nil {
 		log.Fatal(err)
-		return cfg, errors.New("cannot open and decode file correctly.")
+		return cfg, errors.New("cannot open and decode file correctly")
 	}
 
 	return cfg, nil
 }
 
-func ConfigFile() string {
+// configFile returns name of config file based on environment variable.
+// It returns current config file
+func configFile() string {
 	// set working environment
 	appenv = os.Getenv("COMMIT_ENV")
 	if (appenv != "development") &&

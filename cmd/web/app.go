@@ -1,3 +1,7 @@
+/*
+Package cmd/web implements commit service web app.
+See https://github.com/dariubs/commit for more information.
+*/
 package main
 
 import (
